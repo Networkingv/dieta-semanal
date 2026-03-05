@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>App Dieta Semanal</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+font-family:'Poppins',sans-serif;
+background:linear-gradient(135deg,#2ecc71,#27ae60);
+color:#333;
+}
+
+header{
+text-align:center;
+color:white;
+padding:30px 20px;
+}
+
+header h1{
+margin:0;
+font-size:28px;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+padding:20px;
+}
+
+.card{
+background:white;
+border-radius:16px;
+padding:20px;
+margin-bottom:20px;
+box-shadow:0 8px 20px rgba(0,0,0,0.15);
+}
+
+h2{
+margin-top:0;
+color:#27ae60;
+}
+
+.refeicao{
+padding:10px 0;
+border-bottom:1px solid #eee;
+display:flex;
+align-items:center;
+}
+
+.refeicao:last-child{
+border:none;
+}
+
+.check{
+margin-right:10px;
+transform:scale(1.3);
+}
+
+.progress{
+background:#eee;
+border-radius:20px;
+overflow:hidden;
+height:18px;
+margin-top:10px;
+}
+
+.progress-bar{
+height:100%;
+width:0%;
+background:#2ecc71;
+transition:0.3s;
+}
+
+.water{
+text-align:center;
+}
+
+.water-value{
+font-size:30px;
+font-weight:bold;
+margin:10px 0;
+}
+
+button{
+background:#3498db;
+color:white;
+border:none;
+padding:10px 18px;
+border-radius:8px;
+font-size:16px;
+cursor:pointer;
+margin:5px;
+}
+
+.info{
+background:#ecfff3;
+border-left:5px solid #2ecc71;
+padding:15px;
+border-radius:8px;
+}
+
+.day{
+margin-top:20px;
+}
+
+.day-title{
+font-weight:600;
+font-size:20px;
+margin-bottom:10px;
+color:#2ecc71;
+}
+
+footer{
+text-align:center;
+color:white;
+padding:20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>🍏 Aplicativo de Dieta Semanal</h1>
+<p>Plano simples, acessível e equilibrado</p>
+</header>
+
+<div class="container">
+
+<div class="card info">
+Este cardápio foi pensado para ser simples, acessível e equilibrado, ajudando no emagrecimento sem dietas extremas.<br><br>
+<strong>💧 Importante:</strong> Beba entre <strong>2 e 3 litros de água por dia.</strong>
+</div>
+
+<div class="card">
+<h2>📊 Progresso do Dia</h2>
+<div class="progress">
+<div class="progress-bar" id="progress"></div>
+</div>
+<p id="percent">0% concluído</p>
+</div>
+
+<div class="card water">
+<h2>💧 Consumo de Água</h2>
+<div class="water-value" id="water">0 ml</div>
+<button onclick="addWater()">+200 ml</button>
+<button onclick="resetWater()">Reset</button>
+</div>
+
+<div class="card">
+
+<div class="day">
+<div class="day-title">Segunda-feira</div>
+
+<div class="refeicao"><input type="checkbox" class="check" onclick="updateProgress()">Café da manhã — ovos mexidos, pão integral, fruta, café/chá</div>
+<div class="refeicao"><input type="checkbox" class="check" onclick="updateProgress()">Lanche — iogurte natural</div>
+<div class="refeicao"><input type="checkbox" class="check" onclick="updateProgress()">Almoço — arroz, feijão, frango grelhado, salada</div>
+<div class="refeicao"><input type="checkbox" class="check" onclick="updateProgress()">Lanche — castanhas</div>
+<div class="refeicao"><input type="checkbox" class="check" onclick="updateProgress()">Jantar — omelete com legumes e salada</div>
+
+</div>
+
+<div class="day">
+<div class="day-title">Terça-feira</div>
+
+<div class="refeicao"><input type="checkbox" class="check" onclick="updateProgress()">Café da manhã — vitamina de banana com aveia + ovo</div>
+<div class="refeicao"><input type="checkbox" class="check" onclick="updateProgress()">Lanche — maçã</div>
+<div class="refeicao"><input type="checkbox" class="check" onclick="updateProgress()">Almoço — arroz integral, feijão, carne magra, legumes</div>
+<div class="refeicao"><input type="checkbox" class="check" onclick="updateProgress()">Lanche — iogurte</div>
+<div class="refeicao"><input type="checkbox" class="check" onclick="updateProgress()">Jantar — salada grande com frango</div>
+
+</div>
+
+<div class="day">
+<div class="day-title">Quarta-feira</div>
+
+<div class="refeicao"><input type="checkbox" class="check" onclick="updateProgress()">Café da manhã — omelete, pão integral, café</div>
+<div class="refeicao"><input type="checkbox" class="check" onclick="updateProgress()">Lanche — fruta</div>
+<div class="refeicao"><input type="checkbox" class="check" onclick="updateProgress()">Almoço — arroz, feijão, peixe grelhado, salada</div>
+<div class="refeicao"><input type="checkbox" class="check" onclick="updateProgress()">Lanche — castanhas</div>
+<div class="refeicao"><input type="checkbox" class="check" onclick="updateProgress()">Jantar — sopa de legumes com frango</div>
+
+</div>
+
+<div class="day">
+<div class="day-title">Quinta-feira</div>
+
+<div class="refeicao"><input type="checkbox" class="check" onclick="updateProgress()">Café da manhã — iogurte com aveia e fruta</div>
+<div class="refeicao"><input type="checkbox" class="check" onclick="updateProgress()">Lanche — banana</div>
+<div class="refeicao"><input type="checkbox" class="check" onclick="updateProgress()">Almoço — arroz integral, feijão, frango, salada de repolho</div>
+<div class="refeicao"><input type="checkbox" class="check" onclick="updateProgress()">Lanche — ovo cozido</div>
+<div class="refeicao"><input type="checkbox" class="check" onclick="updateProgress()">Jantar — omelete com tomate e cebola</div>
+
+</div>
+
+<div class="day">
+<div class="day-title">Sexta-feira</div>
+
+<div class="refeicao"><input type="checkbox" class="check" onclick="updateProgress()">Café da manhã — ovos mexidos, fruta, café</div>
+<div class="refeicao"><input type="checkbox" class="check" onclick="updateProgress()">Lanche — iogurte</div>
+<div class="refeicao"><input type="checkbox" class="check" onclick="updateProgress()">Almoço — arroz, feijão, carne magra, salada</div>
+<div class="refeicao"><input type="checkbox" class="check" onclick="updateProgress()">Lanche — castanhas</div>
+<div class="refeicao"><input type="checkbox" class="check" onclick="updateProgress()">Jantar — salada com frango ou atum</div>
+
+</div>
+
+<div class="day">
+<div class="day-title">Sábado</div>
+
+<div class="refeicao"><input type="checkbox" class="check" onclick="updateProgress()">Café da manhã — vitamina de fruta com aveia</div>
+<div class="refeicao"><input type="checkbox" class="check" onclick="updateProgress()">Lanche — fruta</div>
+<div class="refeicao"><input type="checkbox" class="check" onclick="updateProgress()">Almoço — arroz, feijão, frango grelhado, salada</div>
+<div class="refeicao"><input type="checkbox" class="check" onclick="updateProgress()">Lanche — iogurte</div>
+<div class="refeicao"><input type="checkbox" class="check" onclick="updateProgress()">Jantar — omelete com legumes</div>
+
+</div>
+
+<div class="day">
+<div class="day-title">Domingo</div>
+
+<div class="refeicao"><input type="checkbox" class="check" onclick="updateProgress()">Café da manhã — ovos mexidos, pão integral, café</div>
+<div class="refeicao"><input type="checkbox" class="check" onclick="updateProgress()">Lanche — fruta</div>
+<div class="refeicao"><input type="checkbox" class="check" onclick="updateProgress()">Almoço — refeição equilibrada</div>
+<div class="refeicao"><input type="checkbox" class="check" onclick="updateProgress()">Lanche — castanhas ou iogurte</div>
+<div class="refeicao"><input type="checkbox" class="check" onclick="updateProgress()">Jantar — sopa leve ou salada</div>
+
+</div>
+
+</div>
+
+</div>
+
+<footer>
+Aplicativo de dieta saudável
+</footer>
+
+<script>
+
+function updateProgress(){
+
+let checks=document.querySelectorAll(".check")
+
+let total=checks.length
+let done=0
+
+checks.forEach(c=>{
+if(c.checked)done++
+})
+
+let percent=Math.round((done/total)*100)
+
+document.getElementById("progress").style.width=percent+"%"
+document.getElementById("percent").innerText=percent+"% concluído"
+
+}
+
+let water=0
+
+function addWater(){
+
+water+=200
+document.getElementById("water").innerText=water+" ml"
+
+}
+
+function resetWater(){
+
+water=0
+document.getElementById("water").innerText="0 ml"
+
+}
+
+</script>
+
+</body>
+</html>
